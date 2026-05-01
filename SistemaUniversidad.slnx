@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../../../../../../source/repos/SistemaUniversidad/SistemaUniversidad.vcxproj" Id="d8257dd8-2ec8-48c3-8aac-c63f7b47c879" />
+</Solution>
