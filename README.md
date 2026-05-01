@@ -1,23 +1,28 @@
-# Sistema de Gestión Universitaria (C++ y SQL Server)
+# Sistema Universidad - Gestión Académica (CRUD)
 
-## Descripción
-Este es un sistema de consola desarrollado en C++ para la gestión de registros académicos (CRUD). Permite administrar entidades como Alumnos y Cursos conectándose de forma nativa a una base de datos relacional.
+## 📌 Descripción del Proyecto
+Este proyecto es un sistema integral desarrollado en **C++** para la gestión académica de una universidad. Implementa operaciones completas de **CRUD** (Crear, Leer, Actualizar, Eliminar) conectándose a una base de datos relacional en **SQL Server** mediante la librería **ODBC**. 
 
-## Tecnologías Utilizadas
+El sistema está diseñado con una arquitectura modular y un menú interactivo en consola, cumpliendo con los estándares de diseño estructurado requeridos para el curso de **Programación I**.
+
+## 🚀 Características Principales
+* **Gestión de Alumnos:** Registro, visualización, actualización de datos y eliminación de estudiantes en el sistema.
+* **Gestión de Cursos y Secciones:** Administración del catálogo de cursos disponibles y control de las secciones asignadas.
+* **Relaciones Complejas:** Manejo de relaciones de muchos a muchos mediante tablas intermedias para las asignaciones académicas.
+* **Consultas Avanzadas:** Implementación de consultas SQL complejas utilizando `LEFT JOIN` y funciones de agrupación como `STRING_AGG` para desplegar las asignaciones de forma consolidada y eficiente.
+* **Integridad Referencial:** Validaciones de seguridad en el código y en la base de datos para prevenir inconsistencias (ej. bloqueos al intentar borrar datos que están siendo referenciados en otras tablas).
+* **Interfaz de Consola Interactiva:** Menú principal robusto que delega operaciones a submenús específicos, manteniendo una experiencia de usuario clara.
+
+## 🛠️ Tecnologías y Herramientas
 * **Lenguaje:** C++
 * **Base de Datos:** Microsoft SQL Server
-* **Conectividad:** API ODBC (Open Database Connectivity) nativa de Windows.
+* **Conector:** API de ODBC (Open Database Connectivity)
+* **Entorno de Desarrollo (IDE):** Microsoft Visual Studio 2022
+* **Control de Versiones:** Git y GitHub
 
-## Requisitos Previos
-Para compilar y ejecutar este proyecto en un entorno local, se necesita:
-1. Visual Studio con la carga de trabajo "Desarrollo para el escritorio con C++".
-2. Microsoft SQL Server (Localhost).
-3. **ODBC Driver 18 for SQL Server** instalado en el sistema.
+## ⚙️ Estructura y Limpieza del Repositorio
+El repositorio ha sido optimizado aplicando un archivo `.gitignore` estricto para mantener únicamente el código fuente (`main.cpp`, archivos `.h`, scripts `.sql` y archivos de solución `.sln` / `.vcxproj`), excluyendo todos los binarios de compilación (`Debug/`, `x64/`), cachés locales y la carpeta oculta `.vs`.
 
-## Estructura de la Base de Datos
-El sistema espera una base de datos llamada `universidad` con (al menos) las siguientes tablas:
-* `alumnos` (Id, Nombres, Apellidos)
-* `cursos` (Id, codigo_curso, nombre)
-
-## Seguridad
-El código implementa consultas preparadas (`SQLPrepare` y `SQLBindParameter`) para evitar vulnerabilidades de Inyección SQL al momento de realizar transacciones DML (Insert, Update, Delete).# SistemaUniversidad
+---
+**Desarrollado por:** Marlon Iván Porres Umanzor
+**Universidad Mariano Gálvez de Guatemala**
