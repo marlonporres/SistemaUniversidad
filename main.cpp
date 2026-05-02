@@ -507,6 +507,7 @@ int main() {
     }
     cout << "¡Conexion Exitosa!\n";
 
+
     int opcionPrincipal;
     do {
         cout << "\n====== SISTEMA UNIVERSIDAD ======\n";
