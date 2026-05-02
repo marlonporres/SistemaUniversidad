@@ -57,14 +57,13 @@ SQLHDBC conectar() {
 }
 
 // =======================================================================
-// 2. CRUD ALUMNOS (Cumple sección 6.1 y requerimiento de JOIN)
+// 2. CRUD ALUMNOS 
 // =======================================================================
 
 void listarAlumnos(SQLHDBC hDbc) {
     SQLHSTMT hStmt = NULL;
     SQLAllocHandle(SQL_HANDLE_STMT, hDbc, &hStmt);
 
-    // Consulta con LEFT JOIN para traer los cursos agrupados y la sección asignada
     SQLCHAR query[] =
         "SELECT a.id, a.Nombres, a.Apellidos, ISNULL(a.Carnet, 'N/A'), "
         "ISNULL(s.nombre, 'Sin seccion'), "
@@ -86,7 +85,6 @@ void listarAlumnos(SQLHDBC hDbc) {
     }
 
     SQLINTEGER id = 0;
-    // OJO: Arreglos inicializados en {0} para evitar basura en memoria
     SQLCHAR nombres[51] = { 0 }, apellidos[51] = { 0 }, carnet[21] = { 0 };
     SQLCHAR seccion[51] = { 0 }, cursosStr[256] = { 0 };
 
@@ -150,7 +148,7 @@ void eliminarAlumno(SQLHDBC hDbc, int id) {
 }
 
 // =======================================================================
-// 3. CRUD CURSOS (Cumple sección 6.2 y validación de eliminación)
+// 3. CRUD CURSOS
 // =======================================================================
 
 void listarCursos(SQLHDBC hDbc) {
@@ -203,7 +201,7 @@ void actualizarCurso(SQLHDBC hDbc, int id, const char* nuevoCodigo, const char* 
 }
 
 void eliminarCurso(SQLHDBC hDbc, int id) {
-    // REGLA 6.2: Validar si el curso está asignado a un alumno antes de eliminar
+
     SQLHSTMT hStmtCheck = NULL;
     SQLAllocHandle(SQL_HANDLE_STMT, hDbc, &hStmtCheck);
     SQLCHAR queryCheck[] = "SELECT COUNT(*) FROM alumnos_cursos WHERE idCursos = ?";
@@ -222,7 +220,6 @@ void eliminarCurso(SQLHDBC hDbc, int id) {
         return;
     }
 
-    // Si pasa la validación, procedemos a eliminar
     SQLHSTMT hStmt = NULL;
     SQLAllocHandle(SQL_HANDLE_STMT, hDbc, &hStmt);
     SQLCHAR query[] = "DELETE FROM cursos WHERE Id = ?";
@@ -235,7 +232,7 @@ void eliminarCurso(SQLHDBC hDbc, int id) {
 }
 
 // =======================================================================
-// 4. CRUD SECCIONES (Cumple sección 6.3 y validación de eliminación)
+// 4. CRUD SECCIONES 
 // =======================================================================
 
 void listarSecciones(SQLHDBC hDbc) {
@@ -288,7 +285,7 @@ void actualizarSeccion(SQLHDBC hDbc, int id, const char* nuevoNombre, const char
 }
 
 void eliminarSeccion(SQLHDBC hDbc, int id) {
-    // REGLA 6.3: Validar si la sección tiene alumnos antes de eliminar
+    
     SQLHSTMT hStmtCheck = NULL;
     SQLAllocHandle(SQL_HANDLE_STMT, hDbc, &hStmtCheck);
     SQLCHAR queryCheck[] = "SELECT COUNT(*) FROM alumnos_seccion WHERE seccion_id = ?";
